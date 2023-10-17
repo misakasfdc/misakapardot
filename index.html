@@ -12,21 +12,21 @@
         This site is connected to Heroku. 
 
     <iframe src="https://gogo.maihays.net/l/956612/2023-07-24/dx9d7?source=exlead111&Text=TEXT" width="100%" height="500" type="text/html" frameborder="0" allowTransparency="true" style="border: 0"></iframe>
-	    
-<script type='text/javascript'>
-piAId = '957612';
-piCId = '';
-piHostname = 'gogo.maihays.net';
 
-(function() {
-	function async_load(){
-		var s = document.createElement('script'); s.type = 'text/javascript';
-		s.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + piHostname + '/pd.js';
-		var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
-	}
-	if(window.attachEvent) { window.attachEvent('onload', async_load); }
-	else { window.addEventListener('load', async_load, false); }
-})();
-</script>    
+	    <script>
+    var piDomain = 'gogo.maihays.net'; // format of 'go.example.com'
+
+    (function() {
+        var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src='//'+piDomain+'/pdt.js';
+        var c=document.getElementsByTagName('script')[0];c.parentNode.insertBefore(s,c);
+        window['pdt'] = window['pdt'] || function(){(window['pdt'].cq = window['pdt'].cq || []).push(arguments);};
+    })();
+
+    // Create an analytics tracker with the required information:
+    // pdt('create', Account Engagement account ID + 1000, Account Engagement campaign ID + 1000, 'go.example.com');
+    pdt('create', 957612, 123133, gogo.maihays.net);
+    pdt('sendPageView');
+
+</script>   
 </body>
 </html>
