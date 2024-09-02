@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base href="" >
+        <meta charset="utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="description" content="956612"/>
+        <title>MCAE_956612_TEST</title>
+    </head>
+    <body> 
+        Hello World
+        This site is connected to Heroku. 
+	    	    
+	<form action="http://misaka.jp-edi.page/l/956612/2022-02-24/3m6y" method="post">
+            <label>メールアドレス</label><br>
+            <input type="text" name="email" value="" placeholder="xxxx@example.com"><br>
+            <label>Last Name</label><br>
+            <input type="lastname" name="lastname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
+            <label>First Name</label><br>
+            <input type="firstname" name="firstname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
+	          <label>Phone</label><br>
+            <input type="tel" name="phone" value="" maxlength="255" placeholder="ハイフンあり"><br>
+            <button type="submit">送信する</button>
+         </form>
+
+	    <script type='text/javascript'>
+piAId = '957612';
+piCId = '';
+piHostname = 'go.sfdc.maihays.net';
+
+(function() {
+	function async_load(){
+		var s = document.createElement('script'); s.type = 'text/javascript';
+		s.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + piHostname + '/pd.js';
+		var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+	}
+	if(window.attachEvent) { window.attachEvent('onload', async_load); }
+	else { window.addEventListener('load', async_load, false); }
+})();
+</script>
+	    
+</body>
+</html>
