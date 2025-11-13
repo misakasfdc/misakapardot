@@ -31,10 +31,8 @@
 <!--  <input type="hidden" name="debugEmail" value="misaka@salesforce.com">   -->
 <!--  ----------------------------------------------------------------------  -->
 	
-<label for="name">LastName</label><input  id="name" maxlength="80" name="first_name" size="20" type="text" /><br>
-	
-<label for="name">FirstName</label><input  id="name" maxlength="80" name="last_name" size="20" type="text" /><br>
-	
+<label for="name">取引先責任者名</label><input  id="name" maxlength="80" name="name" size="20" type="text" /><br>
+
 <label for="email">メール</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
 
 <label for="phone">電話</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
@@ -43,14 +41,15 @@
 
 <label for="description">説明</label><textarea name="description"></textarea><br>
 
-<label for="text">TEXT</label><input  id="text" maxlength="1000" name="text" size="1000" type="text" /><br>
+<input type="hidden"  id="external" name="external" value="1" /><br>
 
-<label for="text">店舗数</label><input  id="text" maxlength="40" name="numberofshops" size="20" type="number" /><br>
+<input type="submit" name="submit">
 
 <input type="checkbox" name="solution01" value="A">面白い
 <input type="checkbox" name="solution01" value="B">役に立つ
 <input type="checkbox" name="solution01" value="C">いまいち
-
+	
+</form>
 	add
 
 	<fieldset>
