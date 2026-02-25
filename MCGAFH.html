@@ -16,33 +16,47 @@
         Marketing Cloud Next Form Handler. 
 	    	    
 	<!-- Copy the form properties into your form Tag where you want to submit the form to Salesforce -->
-        <form id="MCJNSEAYVITBAWLOISA5YQOZTE7M" data-uma-forms="true"></form>
-            <label>メールアドレス</label><br>
-            <input type="text" name="email" value="" placeholder="xxxx@example.com"><br>
-		
-            <label>Last Name</label><br>
-            <input type="text" name="lastname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
-		
-            <label>First Name</label><br>
-            <input type="text" name="firstname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
-		
-            <label>Status</label><br>
-            <input type="text" name="status" value="" maxlength="255" placeholder="〜8文字で入力"><br>
-		
-	        <label>LastModifiedDate</label><br>
-            <input type="date" name="lastmodifieddate" value="" maxlength="255" placeholder="ハイフンあり"><br>
+    <form id="MCJNSEAYVITBAWLOISA5YQOZTE7M" data-uma-forms="true">
+			
+   　 <label>メールアドレス</label><br>
+   　 <input type="text" name="email" value="" placeholder="xxxx@example.com"><br>
+    
+   　 <label>Last Name</label><br>
+   　 <input type="text" name="lastname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
+    
+   　 <label>First Name</label><br>
+   　 <input type="text" name="firstname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
+    
+   　 <input type="hidden" name="status" value="">
+    　<input type="hidden" id="lastmodifieddate" name="lastmodifieddate" value="">
 
-		<!-- ハニーポット項目（ボット対策） -->
-            <div class="honeypot">
-            <label for="comments">Comments</label>
-            <input type="text" id="comments" name="comments">
-            </div>
-		
-            <button type="submit">送信する</button>
-         </form>
+   　 <div class="honeypot" style="display:none;"> <label for="comments">Comments</label>
+        <input type="text" id="comments" name="comments">
+   　 </div>
+    
+    　<button type="submit">送信する</button>
+　　</form>
+
+　　<script>
+    // ページ読み込み時に実行
+    document.addEventListener("DOMContentLoaded", function() {
+        // 本日の日付を取得
+        const today = new Date();
+        const year = today.getFullYear();
+        // 月と日は1桁の場合に先頭に0をつける (例: 2月 -> 02)
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        
+        // YYYY-MM-DD の形式を作成
+        const formattedDate = `${year}-${month}-${day}`;
+        
+        // id="lastmodifieddate" の項目の value に日付をセット
+        document.getElementById("lastmodifieddate").value = formattedDate;
+    });
+　　</script>
 		
 	<!-- Insert these code snippets into your external site page -->
-        <script async src="https://storm-d0e0d837e4de2f.my.site.com/lp/assets/scripts/external-form-handler-host.min.js" onload="SFDCFormHandler.init('https://storm-d0e0d837e4de2f.my.site.com/lp')"></script>
+     <script async src="https://storm-d0e0d837e4de2f.my.site.com/lp/assets/scripts/external-form-handler-host.min.js" onload="SFDCFormHandler.init('https://storm-d0e0d837e4de2f.my.site.com/lp')"></script>
 		
 </body>
 </html>
