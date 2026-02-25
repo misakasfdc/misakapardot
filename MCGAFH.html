@@ -37,23 +37,38 @@
     　<button type="submit">送信する</button>
 　　</form>
 
-　　<script>
+<script>
     // ページ読み込み時に実行
     document.addEventListener("DOMContentLoaded", function() {
-        // 本日の日付を取得
-        const today = new Date();
-        const year = today.getFullYear();
-        // 月と日は1桁の場合に先頭に0をつける (例: 2月 -> 02)
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
+        // 現在の日時を取得
+        const now = new Date();
         
-        // YYYY-MM-DD の形式を作成
-        const formattedDate = `${year}-${month}-${day}`;
+        // 年・月・日を取得（2桁ゼロ埋め）
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
         
-        // id="lastmodifieddate" の項目の value に日付をセット
-        document.getElementById("lastmodifieddate").value = formattedDate;
+        // 時・分・秒・ミリ秒を取得（2桁または3桁ゼロ埋め）
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+        
+        // タイムゾーンのオフセットを計算して文字列化 (例: 日本時間なら +0900)
+        const tzOffset = now.getTimezoneOffset(); // 単位は分、UTCより進んでいる場合はマイナス値になる
+        const offsetSign = tzOffset > 0 ? '-' : '+';
+        const absOffset = Math.abs(tzOffset);
+        const offsetHours = String(Math.floor(absOffset / 60)).padStart(2, '0');
+        const offsetMinutes = String(absOffset % 60).padStart(2, '0');
+        const timezoneString = `${offsetSign}${offsetHours}${offsetMinutes}`;
+        
+        // YYYY-MM-DDTHH:mm:ss.sss+HHmm の形式を作成
+        const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}${timezoneString}`;
+        
+        // id="lastmodifieddate" の項目の value に指定されたフォーマットの日時をセット
+        document.getElementById("lastmodifieddate").value = formattedDateTime;
     });
-　　</script>
+</script>
 		
 	<!-- Insert these code snippets into your external site page -->
      <script async src="https://storm-d0e0d837e4de2f.my.site.com/lp/assets/scripts/external-form-handler-host.min.js" onload="SFDCFormHandler.init('https://storm-d0e0d837e4de2f.my.site.com/lp')"></script>
