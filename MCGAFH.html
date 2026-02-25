@@ -12,7 +12,8 @@
         Hello World
         Marketing Cloud Next Form Handler. 
 	    	    
-	<form action="https://www.maihays.net/s/1034043/dPIRk64CQIbQfqvQqqeGBP1RSjjYKhSn?q=Pardot" method="post">
+	<!-- Copy the form properties into your form Tag where you want to submit the form to Salesforce -->
+        <form id="MCJNSEAYVITBAWLOISA5YQOZTE7M" data-uma-forms="true"></form>
             <label>メールアドレス</label><br>
             <input type="text" name="email" value="" placeholder="xxxx@example.com"><br>
 		
@@ -36,6 +37,8 @@
 		
             <button type="submit">送信する</button>
          </form>
-	    
+	<!-- Insert these code snippets into your external site page -->
+        <script async src="https://storm-d0e0d837e4de2f.my.site.com/lp/assets/scripts/external-form-handler-host.min.js" onload="SFDCFormHandler.init('https://storm-d0e0d837e4de2f.my.site.com/lp')"></script>
+		
 </body>
 </html>
