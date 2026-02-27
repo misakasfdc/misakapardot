@@ -61,26 +61,35 @@
                 const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}${timezoneString}`;
                 document.getElementById("lastmodifieddate").value = formattedDateTime;
 
+                
                 // --- 変更点3: メールアドレスのバリデーション処理 ---
                 const form = document.getElementById("MCJNSEAYVITBAWLOISA5YQOZTE7M");
                 const emailInput = document.getElementById("email");
                 const emailError = document.getElementById("email-error");
 
+                // 変更前: form.addEventListener("submit", function(event) { ... });
+                // 変更後: 以下のコードで上書きしてください
+                
                 form.addEventListener("submit", function(event) {
                     // 一般的なメールアドレスの形式をチェックする正規表現
                     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+                
                     // 未入力、または形式が不正な場合
                     if (!emailInput.value || !emailPattern.test(emailInput.value)) {
-                        // フォームの送信をストップする
+                        // ① ブラウザの標準送信をストップ
                         event.preventDefault();
+                        
+                        // ② 【重要】Salesforce の外部スクリプトが動くのを強制ストップ！
+                        event.stopImmediatePropagation(); 
+                        
                         // エラーメッセージを表示する
                         emailError.style.display = "block";
-                        // 入力欄にフォーカスを当てる
                         emailInput.focus();
                     } else {
-                        // 形式が正しい場合はエラーメッセージを隠す（そのまま送信される）
+                        // 形式が正しい場合はエラーメッセージを隠す（Salesforceの送信処理へ進む）
                         emailError.style.display = "none";
+                    }
+                }, true); // ③ 【重要】末尾に `true` を追加し「キャプチャフェーズ（最優先）」で実行させる
                     }
                 });
             });
