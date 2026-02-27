@@ -6,72 +6,86 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="description" content="MCGA FH 検証用"/>
         <title>Marketing Cloud Next Form Handler</title>
-		<style>
-			.honeypot { display:none; }
-		</style>
+        <style>
+            .honeypot { display:none; }
+            /* エラーメッセージ用のスタイル */
+            .error-message { color: red; font-size: 0.9em; display: none; }
+        </style>
     </head>
     <body>
-	    
-        Hello World
-        Marketing Cloud Next Form Handler. 
-	    	    
-	<!-- Copy the form properties into your form Tag where you want to submit the form to Salesforce -->
-    <form id="MCJNSEAYVITBAWLOISA5YQOZTE7M" data-uma-forms="true">
-			
-   　 <label>メールアドレス</label><br>
-   　 <input type="text" name="email" value="" placeholder="xxxx@example.com"><br>
-    
-   　 <label>Last Name</label><br>
-   　 <input type="text" name="lastname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
-    
-   　 <label>First Name</label><br>
-   　 <input type="text" name="firstname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
-    
-   　 <input type="hidden" name="status" value="New">
-    　<input type="hidden" id="lastmodifieddate" name="lastmodifieddate" value="">
+        Hello World<br>
+        Marketing Cloud Next Form Handler.<br><br>
 
-   　 <div class="honeypot" style="display:none;"> <label for="comments">Comments</label>
-        <input type="text" id="comments" name="comments">
-   　 </div>
-    
-    　<button type="submit">送信する</button>
-　　</form>
+        <form id="MCJNSEAYVITBAWLOISA5YQOZTE7M" data-uma-forms="true">
+            <label>メールアドレス</label><br>
+            <input type="email" id="email" name="email" value="" placeholder="xxxx@example.com" required><br>
+            <span id="email-error" class="error-message">正しいメールアドレスの形式で入力してください。</span><br>
 
-<script>
-    // ページ読み込み時に実行
-    document.addEventListener("DOMContentLoaded", function() {
-        // 現在の日時を取得
-        const now = new Date();
-        
-        // 年・月・日を取得（2桁ゼロ埋め）
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        
-        // 時・分・秒・ミリ秒を取得（2桁または3桁ゼロ埋め）
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
-        
-        // タイムゾーンのオフセットを計算して文字列化 (例: 日本時間なら +0900)
-        const tzOffset = now.getTimezoneOffset(); // 単位は分、UTCより進んでいる場合はマイナス値になる
-        const offsetSign = tzOffset > 0 ? '-' : '+';
-        const absOffset = Math.abs(tzOffset);
-        const offsetHours = String(Math.floor(absOffset / 60)).padStart(2, '0');
-        const offsetMinutes = String(absOffset % 60).padStart(2, '0');
-        const timezoneString = `${offsetSign}${offsetHours}${offsetMinutes}`;
-        
-        // YYYY-MM-DDTHH:mm:ss.sss+HHmm の形式を作成
-        const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}${timezoneString}`;
-        
-        // id="lastmodifieddate" の項目の value に指定されたフォーマットの日時をセット
-        document.getElementById("lastmodifieddate").value = formattedDateTime;
-    });
-</script>
-		
-	<!-- Insert these code snippets into your external site page -->
-     <script async src="https://storm-d0e0d837e4de2f.my.site.com/lp/assets/scripts/external-form-handler-host.min.js" onload="SFDCFormHandler.init('https://storm-d0e0d837e4de2f.my.site.com/lp')"></script>
-		
-</body>
+            <label>Last Name</label><br>
+            <input type="text" name="lastname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
+            
+            <label>First Name</label><br>
+            <input type="text" name="firstname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
+            
+            <input type="hidden" name="status" value="New">
+            <input type="hidden" id="lastmodifieddate" name="lastmodifieddate" value="">
+
+            <div class="honeypot">
+                <label for="comments">Comments</label>
+                <input type="text" id="comments" name="comments">
+            </div>
+            
+            <button type="submit">送信する</button>
+        </form>
+
+        <script>
+            // ページ読み込み時に実行
+            document.addEventListener("DOMContentLoaded", function() {
+                // --- 既存の lastmodifieddate 設定処理 ---
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const day = String(now.getDate()).padStart(2, '0');
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+                
+                const tzOffset = now.getTimezoneOffset();
+                const offsetSign = tzOffset > 0 ? '-' : '+';
+                const absOffset = Math.abs(tzOffset);
+                const offsetHours = String(Math.floor(absOffset / 60)).padStart(2, '0');
+                const offsetMinutes = String(absOffset % 60).padStart(2, '0');
+                const timezoneString = `${offsetSign}${offsetHours}${offsetMinutes}`;
+                
+                const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}${timezoneString}`;
+                document.getElementById("lastmodifieddate").value = formattedDateTime;
+
+                // --- 変更点3: メールアドレスのバリデーション処理 ---
+                const form = document.getElementById("MCJNSEAYVITBAWLOISA5YQOZTE7M");
+                const emailInput = document.getElementById("email");
+                const emailError = document.getElementById("email-error");
+
+                form.addEventListener("submit", function(event) {
+                    // 一般的なメールアドレスの形式をチェックする正規表現
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                    // 未入力、または形式が不正な場合
+                    if (!emailInput.value || !emailPattern.test(emailInput.value)) {
+                        // フォームの送信をストップする
+                        event.preventDefault();
+                        // エラーメッセージを表示する
+                        emailError.style.display = "block";
+                        // 入力欄にフォーカスを当てる
+                        emailInput.focus();
+                    } else {
+                        // 形式が正しい場合はエラーメッセージを隠す（そのまま送信される）
+                        emailError.style.display = "none";
+                    }
+                });
+            });
+        </script>
+
+        <script async src="https://storm-d0e0d837e4de2f.my.site.com/lp/assets/scripts/external-form-handler-host.min.js" onload="SFDCFormHandler.init('https://storm-d0e0d837e4de2f.my.site.com/lp')"></script>
+    </body>
 </html>
