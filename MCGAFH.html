@@ -67,9 +67,6 @@
                 const emailInput = document.getElementById("email");
                 const emailError = document.getElementById("email-error");
 
-                // 変更前: form.addEventListener("submit", function(event) { ... });
-                // 変更後: 以下のコードで上書きしてください
-                
                 form.addEventListener("submit", function(event) {
                     // 一般的なメールアドレスの形式をチェックする正規表現
                     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -90,9 +87,7 @@
                         emailError.style.display = "none";
                     }
                 }, true); // ③ 【重要】末尾に `true` を追加し「キャプチャフェーズ（最優先）」で実行させる
-                    }
-                });
-            });
+            }); // ← 【重要】ここで DOMContentLoaded の処理を正しく閉じる
         </script>
 
         <script async src="https://storm-d0e0d837e4de2f.my.site.com/lp/assets/scripts/external-form-handler-host.min.js" onload="SFDCFormHandler.init('https://storm-d0e0d837e4de2f.my.site.com/lp')"></script>
