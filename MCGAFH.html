@@ -5,7 +5,7 @@
         <meta charset="utf-8"/>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="description" content="MCGA FH 検証用"/>
-        <title>Marketing Cloud Next Form Handler</title>
+        <title>Marketing Cloud Next Form Handler - Prerelease</title>
         <style>
             .honeypot { display:none; }
             /* エラーメッセージ用のスタイル */
@@ -17,9 +17,10 @@
         Marketing Cloud Next Form Handler.<br><br>
 
         <form id="MCJNSEAYVITBAWLOISA5YQOZTE7M" data-uma-forms="true">
-            <label>メールアドレス</label><br>
-            <input type="email" id="email" name="email" value="" placeholder="xxxx@example.com" required><br>
-            <span id="email-error" class="error-message">正しいメールアドレスの形式で入力してください。</span><br>
+             /* 入力文字をカスキングするために type をパスワードに変換してます */
+　　　　　　　<label for="email">メールアドレス</label><br>
+　　　　　　　<input type="password" id="email" name="email" value="" placeholder="xxxx@example.com" required><br>
+　　　　　　　<span id="email-error" class="error-message">正しいメールアドレスの形式で入力してください。</span><br>
 
             <label>Last Name</label><br>
             <input type="text" name="lastname" value="" maxlength="255" placeholder="〜8文字で入力"><br>
